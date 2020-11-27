@@ -18,8 +18,8 @@
             android:scrollbars="vertical"/>
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:src="@drawable/plus_green"
             app:layout_constraintBottom_toBottomOf="parent"
