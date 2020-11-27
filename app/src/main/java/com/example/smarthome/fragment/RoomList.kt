@@ -2,6 +2,7 @@ package com.example.smarthome.fragment
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.LayoutInflater.from
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
@@ -24,12 +25,15 @@ class RoomList : Fragment() {
         roomList = roomList + listOf(Room("Подвал", 2))
     }
 
+    private fun ViewGroup?.inflate(layoutRes: Int, attachToRoot: Boolean = false) = from(context)
+        .inflate(layoutRes, this, attachToRoot)
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(fragment_room_list, container, false)
+        val view = container.inflate(fragment_room_list, false)
 
         if (roomList.isEmpty()) {
             // TODO d.derenok: Add generate room list method
