@@ -11,20 +11,26 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
-        style="@style/RoomCardStyle"
+        android:elevation="30dp"
+        app:cardCornerRadius="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:cardBackgroundColor="@color/gray"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:padding="20dp">
 
             <TextView
                 android:id="@+id/info_text"
                 android:layout_width="247dp"
                 android:layout_height="wrap_content"
                 android:textSize="36sp"
+                android:fontFamily="@font/source_sans_pro"
                 app:layout_constraintBottom_toTopOf="@+id/amount_of_sensors"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -36,6 +42,7 @@
                 android:layout_below="@+id/info_text"
                 android:layout_marginTop="10dp"
                 android:textSize="18sp"
+                android:fontFamily="@font/source_sans_pro"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/info_text" />
 

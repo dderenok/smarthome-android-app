@@ -3,13 +3,16 @@
     <item
         android:id="@+id/room_list"
         android:title="Room list"
-        android:icon="@drawable/room_list_page_foreground"/>
+        android:icon="@drawable/room_list_page_foreground"
+        android:fontFamily="@font/source_sans_pro"/>
     <item
         android:id="@+id/sensor_list"
         android:title="Sensor list"
-        android:icon="@drawable/sensor_list_foreground"/>
+        android:icon="@drawable/sensor_list_foreground"
+        android:fontFamily="@font/source_sans_pro"/>
     <item
         android:id="@+id/home_page"
         android:title="Home page"
-        android:icon="@drawable/home_page_foreground"/>
+        android:icon="@drawable/home_page_foreground"
+        android:fontFamily="@font/source_sans_pro"/>
 </menu>

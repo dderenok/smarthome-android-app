@@ -5,27 +5,25 @@ import android.view.LayoutInflater
 import android.view.LayoutInflater.from
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smarthome.R
-import com.example.smarthome.R.id.first_name
-import com.example.smarthome.R.id.second_name
-import com.example.smarthome.R.layout.fragment_home_page
+import com.example.smarthome.R.layout.recyclerview_start_page_notification_item_row
+import com.example.smarthome.`interface`.OnClickNotification
 import com.example.smarthome.adapter.HomePageAdapter
 import com.example.smarthome.model.UserNotification
 
-class HomePage : Fragment(fragment_home_page) {
+class HomeNotificationsPage : Fragment(recyclerview_start_page_notification_item_row) {
     private lateinit var recyclerView: RecyclerView
     private var userNotificationList = listOf<UserNotification>()
 
     init {
         userNotificationList = userNotificationList + listOf(
-                UserNotification("Object on video", "Unknown object near home"),
-                UserNotification("Sensor issue", "Temperature_1 sensor doesn't respond."),
-                UserNotification("Sensor issue", "Temperature_1 sensor doesn't respond."),
-                UserNotification("Sensor issue", "HighLight sensor doesn't respond.")
+            UserNotification("Object on video", "Unknown object near home"),
+            UserNotification("Sensor issue", "Temperature_1 sensor doesn't respond."),
+            UserNotification("Sensor issue", "Temperature_1 sensor doesn't respond."),
+            UserNotification("Sensor issue", "HighLight sensor doesn't respond.")
         )
     }
 
@@ -37,7 +35,7 @@ class HomePage : Fragment(fragment_home_page) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = container.inflate(fragment_home_page, false)
+        val view = container.inflate(recyclerview_start_page_notification_item_row, false)
 
         if (userNotificationList.isEmpty()) {
             // TODO d.derenok: Add generate room list method
@@ -48,11 +46,6 @@ class HomePage : Fragment(fragment_home_page) {
 //        removeNotificationButton.setOnClickListener {
 //            removeNotification(it)
 //        }
-
-        val firstName = view.findViewById<TextView>(first_name)
-        val secondName = view.findViewById<TextView>(second_name)
-        firstName.text = "FirstName"
-        secondName.text = "SecondName"
 
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView).apply {
             setHasFixedSize(true)
@@ -65,5 +58,9 @@ class HomePage : Fragment(fragment_home_page) {
 
 //    fun removeNotification(view: View) {
 //        userNotificationList.drop(view.id)
+//    }
+//
+//    override fun onNotificationClick(position: Int) {
+//        TODO("Not yet implemented")
 //    }
 }
