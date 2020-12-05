@@ -14,18 +14,18 @@ import com.example.smarthome.R.id.first_name
 import com.example.smarthome.R.id.second_name
 import com.example.smarthome.R.layout.fragment_home_page
 import com.example.smarthome.adapter.HomePageAdapter
-import com.example.smarthome.model.UserNotification
+import com.example.smarthome.model.UserNotificationDto
 
 class HomePage : Fragment(fragment_home_page) {
     private lateinit var recyclerView: RecyclerView
-    private var userNotificationList = listOf<UserNotification>()
+    private var userNotificationList = listOf<UserNotificationDto>()
 
     init {
         userNotificationList = userNotificationList + listOf(
-                UserNotification("Object on video", "Unknown object near home"),
-                UserNotification("Sensor issue", "Temperature_1 sensor doesn't respond."),
-                UserNotification("Sensor issue", "Temperature_1 sensor doesn't respond."),
-                UserNotification("Sensor issue", "HighLight sensor doesn't respond.")
+                UserNotificationDto("Object on video", "Unknown object near home"),
+                UserNotificationDto("Sensor issue", "Temperature_1 sensor doesn't respond."),
+                UserNotificationDto("Sensor issue", "Temperature_1 sensor doesn't respond."),
+                UserNotificationDto("Sensor issue", "HighLight sensor doesn't respond.")
         )
     }
 

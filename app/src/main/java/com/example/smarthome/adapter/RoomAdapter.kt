@@ -5,10 +5,10 @@ import android.view.LayoutInflater.from
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.smarthome.R.layout.recyclerview_room_item_row
-import com.example.smarthome.model.Room
+import com.example.smarthome.model.RoomDto
 import com.example.smarthome.viewholder.RoomViewHolder
 
-class RoomAdapter(private var roomList: List<Room>) : Adapter<RoomViewHolder>() {
+class RoomAdapter(private var roomList: List<RoomDto>) : Adapter<RoomViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
         RoomViewHolder(from(parent.context)

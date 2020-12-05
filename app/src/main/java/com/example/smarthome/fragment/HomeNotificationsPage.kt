@@ -10,20 +10,19 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smarthome.R
 import com.example.smarthome.R.layout.recyclerview_start_page_notification_item_row
-import com.example.smarthome.`interface`.OnClickNotification
 import com.example.smarthome.adapter.HomePageAdapter
-import com.example.smarthome.model.UserNotification
+import com.example.smarthome.model.UserNotificationDto
 
 class HomeNotificationsPage : Fragment(recyclerview_start_page_notification_item_row) {
     private lateinit var recyclerView: RecyclerView
-    private var userNotificationList = listOf<UserNotification>()
+    private var userNotificationList = listOf<UserNotificationDto>()
 
     init {
         userNotificationList = userNotificationList + listOf(
-            UserNotification("Object on video", "Unknown object near home"),
-            UserNotification("Sensor issue", "Temperature_1 sensor doesn't respond."),
-            UserNotification("Sensor issue", "Temperature_1 sensor doesn't respond."),
-            UserNotification("Sensor issue", "HighLight sensor doesn't respond.")
+            UserNotificationDto("Object on video", "Unknown object near home"),
+            UserNotificationDto("Sensor issue", "Temperature_1 sensor doesn't respond."),
+            UserNotificationDto("Sensor issue", "Temperature_1 sensor doesn't respond."),
+            UserNotificationDto("Sensor issue", "HighLight sensor doesn't respond.")
         )
     }
 

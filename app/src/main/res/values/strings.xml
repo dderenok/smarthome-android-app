@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SmartHome</string>
+    <string name="app_name">Smart Home Manager</string>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -7,5 +7,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
-
+    <string name="add_sensor_name_field">Enter sensor name</string>
+    <string name="add_sensor_room_name_field">Enter sensor room name</string>
+    <string name="button_save">Save</string>
+    <string name="button_update">Update</string>
 </resources>
