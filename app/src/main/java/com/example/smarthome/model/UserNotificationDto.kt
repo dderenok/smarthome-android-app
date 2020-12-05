@@ -1,6 +1,6 @@
 package com.example.smarthome.model
 
-class UserNotification(
+class UserNotificationDto(
     var type: String,
     var message: String
 )

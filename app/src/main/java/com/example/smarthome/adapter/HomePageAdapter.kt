@@ -5,11 +5,11 @@ import android.view.LayoutInflater.from
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.example.smarthome.R.layout.recyclerview_start_page_notification_item_row
-import com.example.smarthome.model.UserNotification
+import com.example.smarthome.model.UserNotificationDto
 import com.example.smarthome.viewholder.HomePageViewHolder
 
 class HomePageAdapter(
-    private var userNotificationList: List<UserNotification>
+    private var userNotificationList: List<UserNotificationDto>
 ) : Adapter<HomePageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =

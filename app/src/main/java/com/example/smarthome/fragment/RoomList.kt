@@ -11,18 +11,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.smarthome.R.id.recyclerView as recyclerViewLayout
 import com.example.smarthome.R.layout.fragment_room_list
 import com.example.smarthome.adapter.RoomAdapter
-import com.example.smarthome.model.Room
+import com.example.smarthome.model.RoomDto
 
 class RoomList : Fragment() {
     private lateinit var recyclerView: RecyclerView
-    private var roomList = listOf<Room>()
+    private var roomList = listOf<RoomDto>()
 
     init {
-        roomList = roomList + listOf(Room("Кухня", 3))
-        roomList = roomList + listOf(Room("Ванная", 1))
-        roomList = roomList + listOf(Room("Подвал", 2))
-        roomList = roomList + listOf(Room("Ванная", 1))
-        roomList = roomList + listOf(Room("Подвал", 2))
+        roomList = roomList + listOf(RoomDto("Кухня", 3))
+        roomList = roomList + listOf(RoomDto("Ванная", 1))
+        roomList = roomList + listOf(RoomDto("Подвал", 2))
+        roomList = roomList + listOf(RoomDto("Ванная", 1))
+        roomList = roomList + listOf(RoomDto("Подвал", 2))
     }
 
     private fun ViewGroup?.inflate(layoutRes: Int, attachToRoot: Boolean = false) = from(context)

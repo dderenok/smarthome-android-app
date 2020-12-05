@@ -1,6 +1,6 @@
 package com.example.smarthome.model
 
-data class Sensor(
+data class RoomDto(
     var name: String,
-    var room: Room
+    val amountOfSensors: Int
 )
