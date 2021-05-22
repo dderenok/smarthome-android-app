@@ -7,6 +7,9 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.smarthome.database.dao.SensorDao
 import com.example.smarthome.database.entity.Sensor
+import com.example.smarthome.database.enumeration.SensorType
+import com.example.smarthome.database.enumeration.SensorType.LIGHT
+import com.example.smarthome.database.enumeration.SensorType.TEMPERATURE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -30,18 +33,10 @@ abstract class SensorDatabase : RoomDatabase() {
         suspend fun populateDatabase(sensorDao: SensorDao) {
             sensorDao.deleteAll()
 
-            val sensorOne = Sensor(id = 1, name = "HighLight", roomName = "Kitchen")
-            val sensorSecond = Sensor(id = 2, name = "Temperature_1", roomName = "Bathroom")
-            val sensorThird = Sensor(id = 3, name = "Temperature_2", roomName = "Kitchen")
-            val sensorFouth = Sensor(id = 4, name = "Light_1", roomName = "Hall")
-            val sensorFifth = Sensor(id = 5, name = "Temperature_3", roomName = "Hall")
+            val sensorOne = Sensor(id = 1, name = "Light", roomName = "Kitchen", sensorType = LIGHT, sensorValue = 0.0)
+            val sensorSecond = Sensor(id = 2, name = "DHT11_2", roomName = "Bathroom", sensorType = TEMPERATURE, sensorValue = 23.2)
             sensorDao.insert(sensorOne)
             sensorDao.insert(sensorSecond)
-            sensorDao.insert(sensorThird)
-            sensorDao.insert(sensorFouth)
-            sensorDao.insert(sensorFifth)
-
-            // TODO: Add your own words!
         }
     }
 

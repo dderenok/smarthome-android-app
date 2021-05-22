@@ -1,5 +1,6 @@
 package com.example.smarthome.database.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -14,6 +15,9 @@ interface SensorDao {
 
     @Insert(onConflict = IGNORE)
     fun insert(sensor: Sensor)
+
+    @Query("SELECT * from sensor WHERE name like :name")
+    fun findByName(name: String): List<Sensor>
 
     @Update
     fun update(sensor: Sensor)

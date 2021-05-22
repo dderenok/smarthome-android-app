@@ -12,17 +12,17 @@ import com.example.smarthome.R.id.recyclerView as recyclerViewLayout
 import com.example.smarthome.R.layout.fragment_room_list
 import com.example.smarthome.adapter.RoomAdapter
 import com.example.smarthome.model.RoomDto
+import org.eclipse.paho.client.mqttv3.MqttClient
 
 class RoomList : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var roomList = listOf<RoomDto>()
 
     init {
-        roomList = roomList + listOf(RoomDto("Кухня", 3))
-        roomList = roomList + listOf(RoomDto("Ванная", 1))
-        roomList = roomList + listOf(RoomDto("Подвал", 2))
-        roomList = roomList + listOf(RoomDto("Ванная", 1))
-        roomList = roomList + listOf(RoomDto("Подвал", 2))
+        roomList = roomList + listOf(RoomDto("Kitchen", 1))
+        roomList = roomList + listOf(RoomDto("Basement", 1))
+        roomList = roomList + listOf(RoomDto("Hall", 2))
+        roomList = roomList + listOf(RoomDto("Garage", 1))
     }
 
     private fun ViewGroup?.inflate(layoutRes: Int, attachToRoot: Boolean = false) = from(context)

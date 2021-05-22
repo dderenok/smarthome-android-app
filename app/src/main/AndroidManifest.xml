@@ -3,6 +3,8 @@
     package="com.example.smarthome">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <uses-feature android:name="android.hardware.camera" />
@@ -16,10 +18,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SmartHome">
-        <activity android:name=".activity.AddEditSensorActivity"
+        <activity
+            android:name=".activity.AddEditSensorActivity"
             android:label="Add Sensor"
-            android:parentActivityName=".activity.MainActivity"></activity>
-        <activity android:name=".activity.ScannerActivity"></activity>
+            android:parentActivityName=".activity.MainActivity" />
+        <activity android:name=".activity.ScannerActivity" />
         <activity android:name=".activity.MainActivity"
             android:launchMode="singleTop">
             <intent-filter>
@@ -32,7 +35,8 @@
             android:name=".activity.CaptureTempActivity"
             android:screenOrientation="fullSensor"
             android:stateNotNeeded="true"
-            android:windowSoftInputMode="stateAlwaysHidden"></activity>
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <service android:name="org.eclipse.paho.android.service.MqttService"/>
 
         <meta-data
             android:name="com.google.android.gms.vision.DEPENDENCIES"

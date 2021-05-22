@@ -11,6 +11,8 @@ import android.widget.Toast.LENGTH_LONG
 import android.widget.Toast.makeText
 import androidx.appcompat.app.AlertDialog
 import com.example.smarthome.R.layout.activity_scanner
+import com.example.smarthome.database.enumeration.SensorType
+import com.example.smarthome.database.enumeration.SensorType.LIGHT
 import com.example.smarthome.model.RoomDto
 import com.example.smarthome.model.SensorDto
 import com.google.zxing.integration.android.IntentIntegrator
@@ -51,8 +53,9 @@ class ScannerActivity : AppCompatActivity() {
             if (result.contents != null) {
                 val builder: AlertDialog.Builder = AlertDialog.Builder(this)
                 val sensor = getSensorFromScanResult(result.contents)
-                builder.setMessage(result.contents)
-                builder.setTitle("Scanning Result 2")
+                builder.setMessage("Sensor identifier - ${sensor.id}, sensor name - ${sensor.name}," +
+                        " sensor room - ${sensor.room.name}")
+                builder.setTitle("Scanning Result")
                 builder
                     .setPositiveButton("Scan Again") { _, _ -> scanCode() }
                     .setNegativeButton("Finish") { _, _ -> scanFinish(sensorToOpen = null) }
@@ -71,7 +74,9 @@ class ScannerActivity : AppCompatActivity() {
     private fun getSensorFromScanResult(scanResultContent: String) = SensorDto(
         id = scanResultContent.getJsonFieldByName("id").toLong(),
         name = scanResultContent.getJsonFieldByName("name"),
-        room = scanResultContent.getRoomObject()
+        room = scanResultContent.getRoomObject(),
+        sensorValue = 0.0,
+        sensorType = LIGHT
     )
 
     private fun String.getJsonFieldByName(fieldName: String) =

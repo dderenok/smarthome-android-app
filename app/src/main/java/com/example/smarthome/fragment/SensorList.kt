@@ -32,16 +32,24 @@ import com.example.smarthome.activity.AddEditSensorActivity
 import com.example.smarthome.adapter.SensorAdapter
 import com.example.smarthome.database.SensorApplication
 import com.example.smarthome.database.entity.Sensor
+import com.example.smarthome.database.enumeration.SensorType
 import com.example.smarthome.database.viewmodel.SensorViewModel
 import com.example.smarthome.database.viewmodel.SensorViewModelFactory
 import com.example.smarthome.model.SensorDto
 import com.example.smarthome.model.SensorDto.Companion.fromEntity
+import com.example.smarthome.utils.MQTTClient
+import org.eclipse.paho.client.mqttv3.MqttClient
 
 class SensorList : Fragment(fragment_sensor_list) {
     private lateinit var recyclerView: RecyclerView
     private var sensorList = mutableListOf<SensorDto>()
     private val viewModel: SensorViewModel by viewModels {
         SensorViewModelFactory((activity?.application as SensorApplication).repository)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        MQTTClient(viewModel).connectToBroker(activity?.applicationContext!!)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -62,7 +70,12 @@ class SensorList : Fragment(fragment_sensor_list) {
 
     private fun saveIntentDataToBase(data: Intent) {
         if (data.extras!!["sensorName"] != null && data.extras!!["sensorRoomName"] != null) {
-            val sensor = Sensor(name = data.extras!!["sensorName"].toString(), roomName = data.extras!!["sensorRoomName"].toString())
+            val sensor = Sensor(
+                name = data.extras!!["sensorName"].toString(),
+                roomName = data.extras!!["sensorRoomName"].toString(),
+                sensorType = enumValueOf<SensorType>(data.extras!!["sensorType"].toString()),
+                sensorValue = 0.0
+            )
             viewModel.insert(sensor = sensor)
             makeText(activity?.applicationContext, "Sensor saved", LENGTH_SHORT)
                 .show()
@@ -78,7 +91,12 @@ class SensorList : Fragment(fragment_sensor_list) {
             return
         }
 
-        val sensor = Sensor(name = data.extras!!["sensorName"].toString(), roomName = data.extras!!["sensorRoomName"].toString())
+        val sensor = Sensor(
+            name = data.extras!!["sensorName"].toString(),
+            roomName = data.extras!!["sensorRoomName"].toString(),
+            sensorType = enumValueOf<SensorType>(data.extras!!["sensorType"].toString()),
+            sensorValue = 0.0
+        )
         sensor.id = sensorId
         viewModel.update(sensor = sensor)
         makeText(activity?.applicationContext, "Sensor updated", LENGTH_SHORT)

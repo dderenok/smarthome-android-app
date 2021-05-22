@@ -10,10 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.NO_POSITION
 import com.example.smarthome.R
+import com.example.smarthome.R.id.sensor_value_info
 import com.example.smarthome.R.layout.recyclerview_sensor_item_row
 import com.example.smarthome.`interface`.OnItemClickListener
 import com.example.smarthome.database.entity.Sensor.Companion.toEntity
 import com.example.smarthome.model.SensorDto
+import com.example.smarthome.utils.MQTTClient
+import org.eclipse.paho.client.mqttv3.MqttClient
 
 class SensorAdapter(
     private var sensorList: MutableList<SensorDto>
@@ -29,7 +32,7 @@ class SensorAdapter(
             from(parent.context)
                 .inflate(recyclerview_sensor_item_row, parent, false)
         ).listen { position, _ ->
-            if (listener != null && position != NO_POSITION) {
+            if (position != NO_POSITION) {
                 listener.onItemClick(toEntity(sensorList[position]))
             }
         }
@@ -41,6 +44,7 @@ class SensorAdapter(
     override fun onBindViewHolder(holder: SensorViewHolder, position: Int) {
         holder.roomName.text = sensorList[position].room.name
         holder.sensorName.text = sensorList[position].name
+        holder.sensorValue.text = "Temperature is: ${sensorList[position].sensorValue}"
 
 //        holder.sensorEditIcon.setOnClickListener {
 //            val sensor = sensorList[position]
@@ -49,6 +53,7 @@ class SensorAdapter(
 //        }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun setSensors(sensorList: MutableList<SensorDto>) {
         this.sensorList = sensorList
         notifyDataSetChanged()
@@ -67,6 +72,7 @@ class SensorAdapter(
         var roomName: TextView = view.findViewById(R.id.room_name_info)
         var sensorName: TextView = view.findViewById(R.id.sensor_name_info)
         var sensorEditIcon: ImageView = view.findViewById(R.id.sensor_edit_icon)
+        var sensorValue: TextView = view.findViewById(sensor_value_info)
     }
 
 }

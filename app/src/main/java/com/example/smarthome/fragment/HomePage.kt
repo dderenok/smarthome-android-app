@@ -23,7 +23,7 @@ class HomePage : Fragment(fragment_home_page) {
     init {
         userNotificationList = userNotificationList + listOf(
                 UserNotificationDto("Object on video", "Unknown object near home"),
-                UserNotificationDto("Sensor issue", "Temperature_1 sensor doesn't respond."),
+                UserNotificationDto("Sensor issue", "TMD2712 sensor doesn't respond."),
                 UserNotificationDto("Sensor issue", "Temperature_1 sensor doesn't respond."),
                 UserNotificationDto("Sensor issue", "HighLight sensor doesn't respond.")
         )
@@ -51,8 +51,8 @@ class HomePage : Fragment(fragment_home_page) {
 
         val firstName = view.findViewById<TextView>(first_name)
         val secondName = view.findViewById<TextView>(second_name)
-        firstName.text = "FirstName"
-        secondName.text = "SecondName"
+        firstName.text = "Ivan"
+        secondName.text = "Ivanov"
 
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView).apply {
             setHasFixedSize(true)

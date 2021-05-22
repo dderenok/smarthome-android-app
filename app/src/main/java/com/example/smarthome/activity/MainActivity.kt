@@ -14,6 +14,7 @@ import com.example.smarthome.R.layout.activity_main
 import com.example.smarthome.fragment.HomePage
 import com.example.smarthome.fragment.RoomList
 import com.example.smarthome.fragment.SensorList
+import com.example.smarthome.utils.MQTTClient
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(activity_main)
         setNavigationMenuSettings()
+//        MQTTClient().connectToBroker(applicationContext)
     }
 
     private fun setNavigationMenuSettings() {

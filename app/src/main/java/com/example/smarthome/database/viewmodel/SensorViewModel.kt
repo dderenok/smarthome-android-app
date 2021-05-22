@@ -16,6 +16,10 @@ class SensorViewModel(private val sensorRepository: SensorRepository) : ViewMode
         }
     }
 
+    fun findByName(name: String): List<Sensor> {
+        return sensorRepository.findByName(name)
+    }
+
     fun update(sensor: Sensor) {
         viewModelScope.launch {
             sensorRepository.update(sensor)
