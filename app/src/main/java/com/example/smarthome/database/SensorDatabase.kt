@@ -33,7 +33,7 @@ abstract class SensorDatabase : RoomDatabase() {
         suspend fun populateDatabase(sensorDao: SensorDao) {
             sensorDao.deleteAll()
 
-            val sensorOne = Sensor(id = 1, name = "Light", roomName = "Kitchen", sensorType = LIGHT, sensorValue = 0.0)
+            val sensorOne = Sensor(id = 1, name = "Light bulb", roomName = "Kitchen", sensorType = LIGHT, sensorValue = 0.0)
             val sensorSecond = Sensor(id = 2, name = "DHT11_2", roomName = "Bathroom", sensorType = TEMPERATURE, sensorValue = 23.2)
             sensorDao.insert(sensorOne)
             sensorDao.insert(sensorSecond)

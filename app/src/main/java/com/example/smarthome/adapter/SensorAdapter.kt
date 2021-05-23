@@ -14,6 +14,8 @@ import com.example.smarthome.R.id.sensor_value_info
 import com.example.smarthome.R.layout.recyclerview_sensor_item_row
 import com.example.smarthome.`interface`.OnItemClickListener
 import com.example.smarthome.database.entity.Sensor.Companion.toEntity
+import com.example.smarthome.database.enumeration.SensorType
+import com.example.smarthome.database.enumeration.SensorType.LIGHT
 import com.example.smarthome.model.SensorDto
 import com.example.smarthome.utils.MQTTClient
 import org.eclipse.paho.client.mqttv3.MqttClient
@@ -44,14 +46,17 @@ class SensorAdapter(
     override fun onBindViewHolder(holder: SensorViewHolder, position: Int) {
         holder.roomName.text = sensorList[position].room.name
         holder.sensorName.text = sensorList[position].name
-        holder.sensorValue.text = "Temperature is: ${sensorList[position].sensorValue}"
-
-//        holder.sensorEditIcon.setOnClickListener {
-//            val sensor = sensorList[position]
-//
-//            notifyDataSetChanged()
-//        }
+        holder.sensorValue.text = determineSensorTypeForStatusMessage(sensorList[position])
     }
+
+    private fun determineSensorTypeForStatusMessage(sensorDto: SensorDto) =
+        if (sensorDto.sensorType == LIGHT)
+            "Light status is: ${getLightCorrectValue(sensorDto.sensorValue)}"
+        else "Temperature value is: ${sensorDto.sensorValue} ℃"
+
+    private fun getLightCorrectValue(sensorValue: Double) =
+        if (sensorValue == 0.0) "OFF"
+        else "ON"
 
     @SuppressLint("NotifyDataSetChanged")
     fun setSensors(sensorList: MutableList<SensorDto>) {

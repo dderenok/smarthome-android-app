@@ -54,7 +54,11 @@ class MQTTClient(
             }
         })
 
-        val options = MqttConnectOptions()
+        val options = MqttConnectOptions().apply {
+            isCleanSession = true
+            userName = "user"
+            password = "k19f34LIP".toCharArray()
+        }
         try {
             mqttClient.connect(
                 options,

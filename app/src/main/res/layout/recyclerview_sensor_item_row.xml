@@ -43,14 +43,14 @@
                 <LinearLayout
                     android:layout_width="218dp"
                     android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:paddingTop="25dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/sensor_name_info"
                         android:layout_width="247dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
+                        android:layout_marginTop="15dp"
                         android:fontFamily="@font/source_sans_pro"
                         android:text="Sensor name"
                         android:textSize="24sp"
@@ -59,27 +59,27 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/sensor_value_info"
+                        android:layout_width="247dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/source_sans_pro"
+                        android:layout_marginLeft="10dp"
+                        android:text="Temperature is:"
+                        android:textSize="15sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/sensor_name_info" />
+
+                    <TextView
                         android:id="@+id/room_name_info"
                         android:layout_width="247dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
+                        android:layout_marginLeft="10dp"
                         android:layout_marginTop="-5dp"
                         android:fontFamily="@font/source_sans_pro"
                         android:text="Sensor room name"
                         android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/sensor_name_info" />
-
-                    <TextView
-                        android:id="@+id/sensor_value_info"
-                        android:layout_width="247dp"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/source_sans_pro"
-                        android:layout_marginLeft="15dp"
-                        android:text="Temperature is:"
-                        android:textSize="12sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/room_name_info" />
+                        app:layout_constraintTop_toBottomOf="@+id/sensor_value_info" />
 
                 </LinearLayout>
                 <LinearLayout

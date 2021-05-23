@@ -6,46 +6,71 @@
     tools:context=".activity.AddEditSensorActivity">
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="160dp"
+        tools:layout_editor_absoluteY="88dp">
 
         <EditText
             android:id="@+id/edit_sensor_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:fontFamily="sans-serif-light"
             android:hint="@string/add_sensor_name_field"
             android:inputType="textAutoComplete"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edit_sensor_room_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
             android:fontFamily="sans-serif-light"
             android:hint="@string/add_sensor_room_name_field"
             android:inputType="textAutoComplete"
-            android:textSize="18sp"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"/>
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/light_switch_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:layout_marginLeft="13dp"
+                android:fontFamily="sans-serif-light"
+                android:text="Turn On/Turn Off the light bulb "
+                android:textSize="18sp" />
+
+            <Switch
+                android:id="@+id/light_switch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginRight="13dp"/>
+        </LinearLayout>
 
         <Button
             android:id="@+id/button_save"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/custom_button"
-            android:text="@string/button_save"
-            android:textColor="@color/white"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
-            android:radius="13dp">
-        </Button>
+            android:background="@drawable/custom_button"
+            android:radius="13dp"
+            android:text="@string/button_save"
+            android:textColor="@color/white"/>
 
     </LinearLayout>
 

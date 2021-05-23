@@ -33,6 +33,7 @@ import com.example.smarthome.adapter.SensorAdapter
 import com.example.smarthome.database.SensorApplication
 import com.example.smarthome.database.entity.Sensor
 import com.example.smarthome.database.enumeration.SensorType
+import com.example.smarthome.database.enumeration.SensorType.LIGHT
 import com.example.smarthome.database.viewmodel.SensorViewModel
 import com.example.smarthome.database.viewmodel.SensorViewModelFactory
 import com.example.smarthome.model.SensorDto
@@ -46,10 +47,12 @@ class SensorList : Fragment(fragment_sensor_list) {
     private val viewModel: SensorViewModel by viewModels {
         SensorViewModelFactory((activity?.application as SensorApplication).repository)
     }
+    private lateinit var mqttClient: MQTTClient
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        MQTTClient(viewModel).connectToBroker(activity?.applicationContext!!)
+        mqttClient = MQTTClient(viewModel)
+        mqttClient.connectToBroker(activity?.applicationContext!!)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -91,16 +94,34 @@ class SensorList : Fragment(fragment_sensor_list) {
             return
         }
 
+        val sensorType = data.extras!!["sensorType"].toString()
+        val sensorValue = setCorrectSensorValue(sensorType, data.extras!!["sensorValue"].toString())
+
         val sensor = Sensor(
             name = data.extras!!["sensorName"].toString(),
             roomName = data.extras!!["sensorRoomName"].toString(),
-            sensorType = enumValueOf<SensorType>(data.extras!!["sensorType"].toString()),
-            sensorValue = 0.0
+            sensorType = enumValueOf(sensorType),
+            sensorValue = sensorValue
         )
         sensor.id = sensorId
         viewModel.update(sensor = sensor)
+        sendCommandToSensor(sensorType, sensorValue)
         makeText(activity?.applicationContext, "Sensor updated", LENGTH_SHORT)
             .show()
+    }
+
+    // Is turn on (1.0) or turn off (0.0) in case light lump
+    private fun setCorrectSensorValue(sensorType: String, sensorValue: String) =
+        if (sensorType == "LIGHT") {
+            if (sensorValue.toBoolean()) 1.0
+            else 0.0
+        }
+        else sensorValue.toDouble()
+
+    private fun sendCommandToSensor(sensorType: String, sensorValue: Double) {
+        if (sensorType == "LIGHT") {
+            mqttClient.publish("sensor/light", if (sensorValue == 1.0) "1" else "0")
+        }
     }
 
     private fun ViewGroup?.inflate(layoutRes: Int, attachToRoot: Boolean = false) = from(context)
@@ -159,6 +180,8 @@ class SensorList : Fragment(fragment_sensor_list) {
                 intent.putExtra("sensorId", sensor.id)
                 intent.putExtra("sensorName", sensor.name)
                 intent.putExtra("sensorRoomName", sensor.roomName)
+                intent.putExtra("sensorType", sensor.sensorType.name)
+                intent.putExtra("sensorValue", getCorrectSensorValue(sensor.sensorType, sensor.sensorValue))
                 startActivityForResult(intent, EDIT_SENSOR_ACTIVITY_REQUEST_CODE)
             }
         })
@@ -166,15 +189,23 @@ class SensorList : Fragment(fragment_sensor_list) {
         return view
     }
 
+    private fun getCorrectSensorValue(sensorType: SensorType, sensorValue: Double) =
+        if (sensorType == LIGHT) (sensorValue != 0.0).toString()
+        else sensorValue.toString()
+
     private fun openSensorEditIfExistArguments() {
         if (arguments?.getString("sensorId") != null &&
             arguments?.getString("sensorName") != null &&
-            arguments?.getString("sensorRoomName") != null)
+            arguments?.getString("sensorRoomName") != null &&
+            arguments?.getString("sensorValue") != null &&
+            arguments?.getString("sensorType") != null)
         {
             val intent = Intent(activity?.applicationContext, AddEditSensorActivity::class.java)
             intent.putExtra("sensorId", arguments?.getString("sensorId")?.toLong())
             intent.putExtra("sensorName", arguments?.getString("sensorName"))
             intent.putExtra("sensorRoomName", arguments?.getString("sensorRoomName"))
+            intent.putExtra("sensorType", arguments?.getString("sensorType"))
+            intent.putExtra("sensorValue", arguments?.getString("sensorValue"))
 
             startActivityForResult(intent, EDIT_SENSOR_ACTIVITY_REQUEST_CODE)
         }
