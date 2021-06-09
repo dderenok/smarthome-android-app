@@ -19,9 +19,8 @@ class HomeNotificationsPage : Fragment(recyclerview_start_page_notification_item
 
     init {
         userNotificationList = userNotificationList + listOf(
-            UserNotificationDto("Object on video", "Unknown object near home"),
             UserNotificationDto("Sensor issue", "Temperature_1 sensor doesn't respond."),
-            UserNotificationDto("Sensor issue", "Temperature_1 sensor doesn't respond."),
+            UserNotificationDto("Sensor issue", "Temperature_2 sensor doesn't respond."),
             UserNotificationDto("Sensor issue", "HighLight sensor doesn't respond.")
         )
     }
@@ -36,16 +35,6 @@ class HomeNotificationsPage : Fragment(recyclerview_start_page_notification_item
     ): View? {
         val view = container.inflate(recyclerview_start_page_notification_item_row, false)
 
-        if (userNotificationList.isEmpty()) {
-            // TODO d.derenok: Add generate room list method
-        }
-
-//        val removeNotificationButton = view.findViewById<Button>(R.id.remove_notification)
-//
-//        removeNotificationButton.setOnClickListener {
-//            removeNotification(it)
-//        }
-
         recyclerView = view.findViewById<RecyclerView>(R.id.recyclerView).apply {
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(view.context)
@@ -54,12 +43,4 @@ class HomeNotificationsPage : Fragment(recyclerview_start_page_notification_item
 
         return view
     }
-
-//    fun removeNotification(view: View) {
-//        userNotificationList.drop(view.id)
-//    }
-//
-//    override fun onNotificationClick(position: Int) {
-//        TODO("Not yet implemented")
-//    }
 }

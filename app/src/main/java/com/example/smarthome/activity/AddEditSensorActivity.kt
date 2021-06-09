@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils.isEmpty
 import android.view.View
-import android.view.View.INVISIBLE
+import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.Button
 import android.widget.EditText
@@ -35,7 +35,7 @@ class AddEditSensorActivity : AppCompatActivity() {
         if (isLightSensor == "LIGHT") {
             lightButtonStateLayout.visibility = VISIBLE
         } else {
-            lightButtonStateLayout.visibility = INVISIBLE
+            lightButtonStateLayout.visibility = GONE
         }
         saveButton = findViewById(button_save)
 

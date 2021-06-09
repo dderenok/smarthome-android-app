@@ -39,16 +39,6 @@ class HomePage : Fragment(fragment_home_page) {
     ): View? {
         val view = container.inflate(fragment_home_page, false)
 
-        if (userNotificationList.isEmpty()) {
-            // TODO d.derenok: Add generate room list method
-        }
-
-//        val removeNotificationButton = view.findViewById<Button>(R.id.remove_notification)
-//
-//        removeNotificationButton.setOnClickListener {
-//            removeNotification(it)
-//        }
-
         val firstName = view.findViewById<TextView>(first_name)
         val secondName = view.findViewById<TextView>(second_name)
         firstName.text = "Ivan"

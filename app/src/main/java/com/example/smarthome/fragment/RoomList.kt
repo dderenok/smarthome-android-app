@@ -20,9 +20,7 @@ class RoomList : Fragment() {
 
     init {
         roomList = roomList + listOf(RoomDto("Kitchen", 1))
-        roomList = roomList + listOf(RoomDto("Basement", 1))
-        roomList = roomList + listOf(RoomDto("Hall", 2))
-        roomList = roomList + listOf(RoomDto("Garage", 1))
+        roomList = roomList + listOf(RoomDto("Bathroom", 1))
     }
 
     private fun ViewGroup?.inflate(layoutRes: Int, attachToRoot: Boolean = false) = from(context)
@@ -34,10 +32,6 @@ class RoomList : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = container.inflate(fragment_room_list, false)
-
-        if (roomList.isEmpty()) {
-            // TODO d.derenok: Add generate room list method
-        }
 
         recyclerView = view.findViewById<RecyclerView>(recyclerViewLayout).apply {
             setHasFixedSize(true)

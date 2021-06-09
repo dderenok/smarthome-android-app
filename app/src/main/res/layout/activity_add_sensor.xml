@@ -36,29 +36,33 @@
             android:inputType="textAutoComplete"
             android:textSize="18sp" />
 
-        <LinearLayout
-            android:id="@+id/light_switch_layout"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:visibility="invisible">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="left"
-                android:layout_marginLeft="13dp"
-                android:fontFamily="sans-serif-light"
-                android:text="Turn On/Turn Off the light bulb "
-                android:textSize="18sp" />
-
-            <Switch
-                android:id="@+id/light_switch"
-                android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/light_switch_layout"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginRight="13dp"/>
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="left"
+                    android:layout_marginLeft="13dp"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Turn On/Turn Off the light bulb "
+                    android:textSize="18sp" />
+
+                <Switch
+                    android:id="@+id/light_switch"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginRight="13dp"/>
+            </LinearLayout>
+        </FrameLayout>
 
         <Button
             android:id="@+id/button_save"
